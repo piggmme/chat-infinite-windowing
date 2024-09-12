@@ -11,9 +11,6 @@ dependencies:
   '@tanstack/react-virtual':
     specifier: ^3.10.6
     version: 3.10.6(react-dom@18.2.0)(react@18.2.0)
-  awesome-headless:
-    specifier: ^0.0.1
-    version: 0.0.1(react-dom@18.2.0)(react@18.2.0)
   classnames:
     specifier: ^2.5.1
     version: 2.5.1
@@ -1029,16 +1026,6 @@ packages:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
     dev: true
-
-  /awesome-headless@0.0.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-ibi9HFGg3g3uEKYB1eaeSVmrNMVA7wQYxuFNPtHd3Fp1mJUcZeosV/Te1/G7m/0/vHxyx57LRS0Fct+I3n4mXw==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
