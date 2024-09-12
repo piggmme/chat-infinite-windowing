@@ -2,9 +2,10 @@ import dayjs from 'dayjs'
 import ChatBubble from './ChatBubble'
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import styles from './Chats.module.scss'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useLoadMore } from '../utils/useLoadMore'
 import { get_chat } from '../utils/api'
+import { scrollToBottom, useChatScroll } from '../utils/scroll'
 
 const useChats = () => {
   return useSuspenseInfiniteQuery({
@@ -66,13 +67,13 @@ export default function Chats () {
         {showLoadMore && <li ref={loadMoreRef} />}
         {chatList.map((chat, index) => {
           const isStartMessage
-            = index === 0 // 1. 첫 번째 메시지
-            || chat.senderId !== chatList[index - 1].senderId // 2. 이전 메시지와 다른 사용자
-            || dayjs(chatList[index - 1].createdAt).diff(dayjs(chat.createdAt), 'minute') > 1 // 3. 이전 메시지와 1분 이상 차이
+            = index === 0 // 1. first message
+            || chat.senderId !== chatList[index - 1].senderId // 2. different sender with previous message
+            || dayjs(chatList[index - 1].createdAt).diff(dayjs(chat.createdAt), 'minute') > 1 // 3. 1 minute difference with previous message
           const isLastMessage
-              = index === chatList.length - 1 // 1. 마지막 메시지
-              || chat.senderId !== chatList[index + 1].senderId // 2. 다음 메시지와 다른 사용자
-              || dayjs(chatList[index + 1].createdAt).diff(dayjs(chat.createdAt), 'minute') > 1 // 3. 다음 메시지와 1분 이상 차이
+              = index === chatList.length - 1 // 1. last message
+              || chat.senderId !== chatList[index + 1].senderId // 2. different sender with next message
+              || dayjs(chatList[index + 1].createdAt).diff(dayjs(chat.createdAt), 'minute') > 1 // 3. 1 minute difference with next message
 
           return (
             <li key={`chat-${chat.id}-${chat.createdAt}`}>
@@ -99,23 +100,4 @@ export default function Chats () {
       )}
     </div>
   )
-}
-
-const scrollToBottom = (element: HTMLUListElement) => {
-  element.scrollTo({
-    top: element.scrollHeight,
-    left: 0,
-    behavior: 'instant',
-  })
-}
-
-function useChatScroll<T> (dep: T, disabled: boolean) {
-  const ref = useRef<HTMLUListElement>(null)
-  useEffect(() => {
-    if (disabled) return
-    if (ref.current) {
-      scrollToBottom(ref.current)
-    }
-  }, [dep, disabled])
-  return ref as React.RefObject<HTMLUListElement>
 }
