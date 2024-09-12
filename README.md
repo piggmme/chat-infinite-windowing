@@ -1,4 +1,7 @@
-# React Infinite Scrollable and Windowing Chat Example
+# Infinite Scrollable and Windowing Chat Example
+
+- React + Typescript
+- SCSS
 
 ## How To Start
 
