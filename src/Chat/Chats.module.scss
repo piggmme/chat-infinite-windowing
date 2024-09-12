@@ -1,0 +1,26 @@
+.ChatBubbleList {
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  // 스크롤 가능한 요소는 height, overscroll 속성이 있어야 한다.
+  height: 100vh;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+}
+
+.ChatNewMssage {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  height: 24px;
+  border-radius: 24px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 32px;
+  background-color: #222222;
+  color: white;
+}
